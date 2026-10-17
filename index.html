@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>بلاغ ضرر — عالم الكوفي</title>
+<meta name="theme-color" content="#53230E">
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--br:#53230E;--br2:#7A3A1C;--cr:#F6E7D2;--cr2:#FBF4EA;--ink:#1E120B;--mut:#7D6A5C;--line:#E7D6C0;--card:#FFFFFF;--bg:#F6E7D2;
+  --bad:#B42318;--bad-s:#FDECEA;--ok:#53230E;--r:18px}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0}
+body{font-family:'Readex Pro',system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:15px;line-height:1.6;min-height:100vh}
+button,input,textarea{font:inherit;color:inherit}
+.wrap{max-width:560px;margin:0 auto;padding:0 16px 40px}
+.hero{background:var(--br);color:var(--cr);padding:22px 16px 46px;text-align:center;position:relative}
+.hero .lang{position:absolute;top:14px;inset-inline-end:14px;background:rgba(246,231,210,.14);border:1px solid rgba(246,231,210,.3);color:var(--cr);border-radius:99px;padding:5px 13px;font-size:13px;cursor:pointer}
+.hero img{width:74px;height:74px;object-fit:contain;background:var(--cr);border-radius:20px;padding:6px}
+.hero h1{margin:10px 0 2px;font-size:21px;font-weight:600}
+.hero p{margin:0;font-size:13.5px;opacity:.85}
+.tabs{display:flex;background:var(--card);border-radius:99px;padding:5px;margin:-26px auto 16px;max-width:360px;box-shadow:0 6px 20px rgba(83,35,14,.14);position:relative}
+.tabs button{flex:1;border:0;background:none;padding:10px;border-radius:99px;font-weight:500;cursor:pointer;color:var(--mut)}
+.tabs button[aria-pressed=true]{background:var(--br);color:var(--cr)}
+.card{background:var(--card);border-radius:var(--r);padding:18px 16px;margin-bottom:12px;border:1px solid var(--line)}
+.card h2{margin:0 0 12px;font-size:15.5px;font-weight:600;display:flex;align-items:center;gap:8px}
+.card h2 .n{width:24px;height:24px;border-radius:50%;background:var(--br);color:var(--cr);display:inline-grid;place-items:center;font-size:12.5px;flex:none}
+label.fl{display:block;font-size:13px;font-weight:500;margin:0 0 5px}
+label.fl i{color:var(--bad);font-style:normal}
+.in{width:100%;border:1.5px solid var(--line);background:var(--cr2);border-radius:12px;padding:12px 13px;font-size:16px;outline:0;transition:border-color .15s}
+.in:focus{border-color:var(--br)}
+.in.err{border-color:var(--bad);background:var(--bad-s)}
+.ltr{direction:ltr;text-align:right}
+[dir=ltr] .ltr{text-align:left}
+textarea.in{min-height:84px;resize:vertical}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fld{margin-bottom:12px}.fld:last-child{margin-bottom:0}
+.hint{font-size:12px;color:var(--mut);margin-top:4px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{cursor:pointer}
+.chips input{position:absolute;opacity:0;pointer-events:none}
+.chips span{display:inline-flex;align-items:center;gap:6px;border:1.5px solid var(--line);background:var(--cr2);border-radius:99px;padding:8px 14px;font-size:14px;transition:.15s}
+.chips input:checked+span{background:var(--br);border-color:var(--br);color:var(--cr)}
+.chips input:focus-visible+span{outline:2px solid var(--br);outline-offset:2px}
+.chips.err span{border-color:var(--bad)}
+.warn{background:var(--br);color:var(--cr);border-radius:14px;padding:13px 14px;display:flex;gap:11px;align-items:flex-start;margin-bottom:12px}
+.warn b{display:block;font-weight:600;font-size:14.5px}
+.warn small{font-size:12.5px;opacity:.88;line-height:1.55;display:block;margin-top:2px}
+.warn svg{flex:none;margin-top:2px}
+.guide{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}
+.guide div{background:var(--cr2);border:1px dashed var(--line);border-radius:12px;padding:9px 4px;text-align:center;font-size:11.5px;line-height:1.35;color:var(--mut)}
+.guide svg{display:block;margin:0 auto 4px;color:var(--br)}
+.pick{width:100%;border:2px dashed var(--br);background:var(--cr2);color:var(--br);border-radius:14px;padding:16px;font-weight:600;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px}
+.pick.err{border-color:var(--bad);color:var(--bad);background:var(--bad-s)}
+.shots{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}
+.shots:empty{display:none}
+.shot{position:relative;aspect-ratio:1;border-radius:11px;overflow:hidden;background:var(--cr)}
+.shot img{width:100%;height:100%;object-fit:cover;display:block}
+.shot button{position:absolute;top:4px;inset-inline-start:4px;width:24px;height:24px;border-radius:50%;border:0;background:rgba(30,18,11,.75);color:#fff;display:grid;place-items:center;cursor:pointer;padding:0}
+.cnt{font-size:12.5px;color:var(--mut);margin-top:8px;text-align:center}
+.agree{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;cursor:pointer;margin-top:12px;padding:11px 12px;border-radius:12px;background:var(--cr2);border:1.5px solid var(--line)}
+.agree.err{border-color:var(--bad);background:var(--bad-s)}
+.agree input{width:20px;height:20px;accent-color:var(--br);flex:none;margin:1px 0 0}
+.btn{width:100%;border:0;background:var(--br);color:var(--cr);border-radius:14px;padding:15px;font-weight:600;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px}
+.btn:disabled{opacity:.6;cursor:wait}
+.btn.ghost{background:transparent;color:var(--br);border:1.5px solid var(--br)}
+.msg{border-radius:12px;padding:11px 13px;font-size:13.5px;margin-bottom:12px;background:var(--bad-s);color:var(--bad);font-weight:500}
+.msg:empty{display:none}
+.hp{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;clip-path:inset(50%);pointer-events:none}
+.done{text-align:center;padding:26px 18px}
+.done .ok{width:64px;height:64px;border-radius:50%;background:var(--br);color:var(--cr);display:grid;place-items:center;margin:0 auto 12px}
+.done h2{justify-content:center;font-size:19px;margin-bottom:4px}
+.cno{display:inline-flex;align-items:center;gap:10px;background:var(--cr);border-radius:14px;padding:10px 16px;margin:12px 0 6px;font-size:22px;font-weight:700;color:var(--br);direction:ltr;letter-spacing:.5px}
+.cno button{border:0;background:var(--br);color:var(--cr);border-radius:9px;padding:6px 10px;font-size:12.5px;cursor:pointer;font-weight:500;letter-spacing:0}
+.done p{color:var(--mut);font-size:13.5px;margin:6px 0 16px}
+.done .btn+.btn{margin-top:8px}
+.tl{list-style:none;margin:6px 0 0;padding:0}
+.tl li{display:flex;gap:12px;position:relative;padding-bottom:18px}
+.tl li:last-child{padding-bottom:0}
+.tl li:not(:last-child)::after{content:'';position:absolute;top:26px;bottom:2px;inset-inline-start:12px;width:2px;background:var(--line)}
+.tl li.on:not(:last-child)::after{background:var(--br)}
+.tl .dot{width:26px;height:26px;border-radius:50%;border:2px solid var(--line);background:var(--card);flex:none;display:grid;place-items:center;color:var(--cr);position:relative;z-index:1}
+.tl li.on .dot{background:var(--br);border-color:var(--br)}
+.tl li.cur .dot{box-shadow:0 0 0 5px rgba(83,35,14,.15)}
+.tl b{font-weight:600;font-size:14.5px;display:block}
+.tl small{color:var(--mut);font-size:12.5px}
+.tl li:not(.on) b{color:var(--mut);font-weight:400}
+.thead{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.thead small{display:block;color:var(--mut);font-size:12px}
+.thead b{font-size:17px;direction:ltr;display:inline-block}
+.pill{background:var(--br);color:var(--cr);border-radius:99px;padding:5px 12px;font-size:12.5px;font-weight:500;white-space:nowrap}
+.pill.bad{background:var(--bad)}
+.note{background:var(--cr2);border-inline-start:4px solid var(--br);border-radius:10px;padding:11px 13px;margin-top:14px;font-size:14px}
+.note small{display:block;color:var(--mut);font-size:12px;margin-bottom:2px}
+.note.ask{border-color:var(--bad);background:var(--bad-s)}
+.foot{text-align:center;font-size:12px;color:var(--mut);margin-top:18px}
+.foot a{color:var(--br)}
+.spin{width:18px;height:18px;border:2.5px solid rgba(246,231,210,.4);border-top-color:var(--cr);border-radius:50%;animation:sp .8s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+[hidden]{display:none!important}
+@media (max-width:380px){.guide{grid-template-columns:repeat(2,1fr)}.g2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <button class="lang" id="langB" type="button">English</button>
+  <img src="logo.png" alt="عالم الكوفي">
+  <h1 data-t="title"></h1>
+  <p data-t="sub"></p>
+</header>
+<div class="wrap">
+  <div class="tabs" role="tablist">
+    <button type="button" id="tabN" data-tab="new" aria-pressed="true" data-t="tabNew"></button>
+    <button type="button" id="tabT" data-tab="track" aria-pressed="false" data-t="tabTrack"></button>
+  </div>
+
+  <!-- ===== تسجيل بلاغ ===== -->
+  <section id="pNew">
+    <form id="frm" novalidate>
+      <div class="msg" id="msgN" role="alert"></div>
+
+      <div class="card">
+        <h2><span class="n">1</span><span data-t="s1"></span></h2>
+        <div class="fld"><label class="fl" for="order"><span data-t="order"></span> <i>*</i></label>
+          <input class="in ltr" id="order" inputmode="numeric" autocomplete="off" maxlength="20"></div>
+        <div class="fld"><label class="fl" for="phone"><span data-t="phone"></span> <i>*</i></label>
+          <input class="in ltr" id="phone" type="tel" inputmode="tel" placeholder="05XXXXXXXX" maxlength="15" autocomplete="tel"></div>
+        <div class="g2 fld">
+          <div><label class="fl" for="name" data-t="name"></label><input class="in" id="name" maxlength="60" autocomplete="name"></div>
+          <div><label class="fl" for="deliv"><span data-t="deliv"></span> <i>*</i></label><input class="in ltr" id="deliv" type="date"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2><span class="n">2</span><span data-t="s2"></span> <i style="color:var(--bad);font-style:normal">*</i></h2>
+        <div class="chips" id="types"></div>
+        <div class="fld" style="margin-top:14px"><label class="fl" for="desc" data-t="desc"></label>
+          <textarea class="in" id="desc" maxlength="600"></textarea></div>
+      </div>
+
+      <div class="card">
+        <h2><span class="n">3</span><span data-t="s3"></span> <i style="color:var(--bad);font-style:normal">*</i></h2>
+        <div class="warn">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+          <div><b data-t="warnT"></b><small data-t="warnS"></small></div>
+        </div>
+        <div class="guide" id="guide"></div>
+        <button type="button" class="pick" id="pickB">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          <span data-t="pick"></span></button>
+        <input type="file" id="file" accept="image/*" multiple hidden>
+        <div class="shots" id="shots"></div>
+        <div class="cnt" id="cnt"></div>
+        <label class="agree" id="agreeL"><input type="checkbox" id="agree"><span data-t="agree"></span></label>
+      </div>
+
+      <input class="hp" id="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="btn" id="sendB" type="submit"><span data-t="send"></span></button>
+    </form>
+
+    <div class="card done" id="done" hidden>
+      <div class="ok"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+      <h2 data-t="doneT"></h2>
+      <div data-t="doneNo" style="color:var(--mut);font-size:13px"></div>
+      <div class="cno"><span id="cnoV"></span><button type="button" id="copyB" data-t="copy"></button></div>
+      <p data-t="doneS"></p>
+      <button class="btn" type="button" id="goTrack"><span data-t="trackIt"></span></button>
+      <button class="btn ghost" type="button" id="again"><span data-t="again"></span></button>
+    </div>
+  </section>
+
+  <!-- ===== التتبع ===== -->
+  <section id="pTrack" hidden>
+    <form class="card" id="tfrm" novalidate>
+      <h2 data-t="tTitle"></h2>
+      <div class="msg" id="msgT" role="alert"></div>
+      <div class="fld"><label class="fl" for="tno" data-t="tNo"></label>
+        <input class="in ltr" id="tno" placeholder="CWC-1001" autocomplete="off" autocapitalize="characters" maxlength="14"></div>
+      <div class="fld"><label class="fl" for="tph" data-t="tPh"></label>
+        <input class="in ltr" id="tph" inputmode="numeric" maxlength="4" placeholder="••••" autocomplete="off"></div>
+      <button class="btn" id="tB" type="submit"><span data-t="tGo"></span></button>
+    </form>
+    <div class="card" id="tres" hidden></div>
+  </section>
+
+  <div class="foot"><span data-t="foot"></span> · <a href="https://coffeeworld2021.com" target="_blank" rel="noopener">coffeeworld2021.com</a></div>
+</div>
+
+<script>
+/* ============ الإعداد ============
+   الصق هنا رابط Google Apps Script بعد النشر (Deploy → Web app)  */
+var API_URL = 'https://script.google.com/macros/s/AKfycbwmPpk78JMqPG5FFvDlJIgkNlQZ2W-y004SufbA9Cb0WOOoYj336kvJytj24-X2k0kz/exec';
+/* ================================== */
+
+var MIN_PH = 2, MAX_PH = 8;
+var T = {
+  title:['بلاغ ضرر في الطلب','Report a damaged order'],
+  sub:['سجّل بلاغك خلال دقيقة وتابع حالته من نفس الصفحة','Takes a minute — track it right here afterwards'],
+  tabNew:['تسجيل بلاغ','New claim'], tabTrack:['تتبع بلاغ','Track claim'],
+  s1:['بيانات الطلب','Order details'], order:['رقم الطلب','Order number'], phone:['رقم الجوال','Mobile number'],
+  name:['الاسم','Name'], deliv:['تاريخ الاستلام','Date received'],
+  s2:['نوع الضرر','What’s wrong?'], desc:['وصف مختصر (اختياري)','Short description (optional)'],
+  s3:['صور الضرر','Photos'],
+  warnT:['صوّر قبل التركيب','Photograph BEFORE assembly'],
+  warnS:['البلاغ يُقبل فقط بصور القطعة قبل تركيبها ومعها الكرتون. لا تركّب القطعة المتضررة.','Claims are accepted only with photos taken before assembly, including the carton. Do not assemble the damaged part.'],
+  g1:['الكرتون من الخارج','Outer carton'], g2:['الضرر عن قرب','Damage close-up'], g3:['القطعة كاملة','Whole part'], g4:['ملصق الكرتون','Carton label'],
+  pick:['التقط أو أرفق الصور','Take or attach photos'],
+  cnt:['{n} من {max} صور — الحد الأدنى {min}','{n} of {max} photos — minimum {min}'],
+  agree:['أؤكد أن الصور ملتقطة قبل تركيب القطعة','I confirm the photos were taken before assembly'],
+  send:['إرسال البلاغ','Submit claim'], sending:['جاري الإرسال…','Sending…'], prep:['تجهيز الصور…','Preparing photos…'],
+  doneT:['استلمنا بلاغك ✅','Claim received ✅'], doneNo:['رقم البلاغ','Claim number'],
+  doneS:['احتفظ بالرقم — تقدر تتابع حالة البلاغ في أي وقت بالرقم وآخر ٤ أرقام من جوالك.','Keep this number — track anytime with it and the last 4 digits of your mobile.'],
+  copy:['نسخ','Copy'], copied:['تم ✓','Copied ✓'], trackIt:['تتبع البلاغ','Track this claim'], again:['تسجيل بلاغ آخر','Submit another claim'],
+  tTitle:['تتبع حالة البلاغ','Track your claim'], tNo:['رقم البلاغ','Claim number'], tPh:['آخر ٤ أرقام من الجوال','Last 4 digits of mobile'], tGo:['عرض الحالة','Show status'],
+  st0:['استلمنا البلاغ','Claim received'], st1:['قيد المراجعة','Under review'], st2:['تم اتخاذ القرار','Decision made'], st3:['تم الشحن / التحويل','Shipped / transferred'], st4:['تم إغلاق البلاغ','Claim closed'],
+  stInfo:['نحتاج معلومات منك','We need more info'], stRej:['البلاغ غير مقبول','Claim not accepted'],
+  noteT:['رسالة من فريق خدمة العملاء','Message from customer care'],
+  order2:['طلب','Order'], at:['تاريخ البلاغ','Submitted'], upd:['آخر تحديث','Last update'],
+  foot:['عالم الكوفي — خدمة ما بعد البيع','Coffee World — After-sales care'],
+  e_req:['عبّ الحقول المطلوبة المؤشرة باللون الأحمر','Please fill the fields marked in red'],
+  e_phone:['رقم الجوال غير صحيح','Mobile number looks wrong'],
+  e_date:['تاريخ الاستلام ما يكون بالمستقبل','Date received can’t be in the future'],
+  e_ph:['أرفق {min} صور على الأقل','Attach at least {min} photos'],
+  e_agree:['أكّد أن الصور قبل التركيب','Please confirm photos were taken before assembly'],
+  e_net:['تعذّر الإرسال — تأكد من الإنترنت وحاول مرة ثانية','Couldn’t send — check your connection and try again'],
+  e_cfg:['الصفحة غير مربوطة بعد — تواصل معنا على الواتساب','This page isn’t connected yet — please contact us on WhatsApp'],
+  e_nf:['ما لقينا بلاغ بهذا الرقم — تأكد من الرقم وآخر ٤ أرقام من جوالك','No claim found — check the number and the last 4 digits'],
+  e_t:['أدخل رقم البلاغ وآخر ٤ أرقام من الجوال','Enter the claim number and last 4 digits'],
+  e_max:['الحد الأقصى {max} صور','Maximum {max} photos']
+};
+var TYPES = [['brk','كسر في قطعة','Broken part'],['scr','خدوش أو تشققات','Scratches / cracks'],['tot','تلف كامل','Fully damaged'],
+  ['mis','قطعة ناقصة','Missing part'],['def','عيب تصنيع','Manufacturing defect'],['box','الكرتون وصل تالف أو مفتوح','Carton arrived damaged / open']];
+var GUIDE = [['g1','<path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/>'],['g2','<circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M11 8v6M8 11h6"/>'],
+  ['g3','<rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 18v2M17 18v2"/>'],['g4','<path d="M4 4h16v16H4z"/><path d="M8 8h2M8 12h8M8 16h5"/>']];
+
+var lang = 'ar', photos = [];
+try{ lang = localStorage.getItem('cwc_lang') || 'ar' }catch(e){}
+function $(i){return document.getElementById(i)}
+function t(k,v){var s=(T[k]||[k,k])[lang==='en'?1:0];if(v)for(var x in v)s=s.split('{'+x+'}').join(v[x]);return s}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function ar2en(s){return String(s||'').replace(/[٠-٩]/g,function(d){return '٠١٢٣٤٥٦٧٨٩'.indexOf(d)}).replace(/[۰-۹]/g,function(d){return '۰۱۲۳۴۵۶۷۸۹'.indexOf(d)})}
+function ico(p,s){return '<svg width="'+(s||18)+'" height="'+(s||18)+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+p+'</svg>'}
+function dmy(iso){if(!iso)return '';var d=new Date(iso);if(isNaN(d))return iso;var p=function(x){return ('0'+x).slice(-2)};return p(d.getDate())+'/'+p(d.getMonth()+1)+'/'+d.getFullYear()}
+
+function paint(){
+  document.documentElement.lang=lang;document.documentElement.dir=lang==='en'?'ltr':'rtl';
+  document.title=t('title')+' — '+(lang==='en'?'Coffee World':'عالم الكوفي');
+  $('langB').textContent=lang==='en'?'العربية':'English';
+  document.querySelectorAll('[data-t]').forEach(function(e){e.textContent=t(e.getAttribute('data-t'))});
+  var sel=Array.prototype.map.call(document.querySelectorAll('#types input:checked'),function(i){return i.value});
+  $('types').innerHTML=TYPES.map(function(x){return '<label><input type="checkbox" value="'+x[0]+'"'+(sel.indexOf(x[0])>=0?' checked':'')+'><span>'+esc(lang==='en'?x[2]:x[1])+'</span></label>'}).join('');
+  $('guide').innerHTML=GUIDE.map(function(g){return '<div>'+ico(g[1],22)+esc(t(g[0]))+'</div>'}).join('');
+  drawShots();
+  if(lastTrack)showTrack(lastTrack);
+}
+function drawShots(){
+  $('shots').innerHTML=photos.map(function(p,i){return '<div class="shot"><img src="'+p+'" alt=""><button type="button" data-rm="'+i+'" aria-label="x">'+ico('<path d="M18 6 6 18M6 6l12 12"/>',14)+'</button></div>'}).join('');
+  $('cnt').textContent=t('cnt',{n:photos.length,max:MAX_PH,min:MIN_PH});
+}
+$('langB').onclick=function(){lang=lang==='en'?'ar':'en';try{localStorage.setItem('cwc_lang',lang)}catch(e){}paint()};
+
+/* ---- tabs ---- */
+function tab(w){$('tabN').setAttribute('aria-pressed',w==='new');$('tabT').setAttribute('aria-pressed',w==='track');$('pNew').hidden=w!=='new';$('pTrack').hidden=w!=='track'}
+$('tabN').onclick=function(){tab('new')};$('tabT').onclick=function(){tab('track')};
+
+/* ---- photos ---- */
+function shrink(file){return new Promise(function(res){var r=new FileReader();
+  r.onload=function(e){var im=new Image();im.onload=function(){var mx=1500,q=.82,out;
+    for(var k=0;k<6;k++){var s=Math.min(1,mx/Math.max(im.width,im.height)),c=document.createElement('canvas');
+      c.width=Math.round(im.width*s);c.height=Math.round(im.height*s);var g=c.getContext('2d');g.fillStyle='#fff';g.fillRect(0,0,c.width,c.height);g.drawImage(im,0,0,c.width,c.height);
+      out=c.toDataURL('image/jpeg',q);if(out.length<520000)break;if(q>.6)q-=.08;else mx=Math.round(mx*.82)}
+    res(out)};im.onerror=function(){res(null)};im.src=e.target.result};r.onerror=function(){res(null)};r.readAsDataURL(file)})}
+$('pickB').onclick=function(){$('file').click()};
+$('file').onchange=function(e){var fs=Array.prototype.filter.call(e.target.files,function(f){return /^image\//.test(f.type)||/\.(heic|heif|jpe?g|png|webp)$/i.test(f.name)});e.target.value='';
+  var room=MAX_PH-photos.length;if(fs.length>room){msg('msgN',t('e_max',{max:MAX_PH}));fs=fs.slice(0,Math.max(0,room))}
+  $('pickB').disabled=true;$('cnt').textContent=t('prep');
+  Promise.all(fs.map(shrink)).then(function(ds){ds.forEach(function(d){if(d)photos.push(d)});$('pickB').disabled=false;$('pickB').classList.remove('err');drawShots()})};
+$('shots').onclick=function(e){var b=e.target.closest('[data-rm]');if(!b)return;photos.splice(+b.getAttribute('data-rm'),1);drawShots()};
+
+function msg(id,s){var m=$(id);m.textContent=s||'';if(s)m.scrollIntoView({behavior:'smooth',block:'center'})}
+function mark(el,bad){el.classList.toggle('err',!!bad);return !bad}
+
+/* ---- submit ---- */
+var busy=false;
+$('frm').onsubmit=function(e){e.preventDefault();if(busy)return;msg('msgN','');
+  var order=ar2en($('order').value).replace(/\D/g,''),phone=ar2en($('phone').value).replace(/\D/g,''),deliv=$('deliv').value,
+      types=Array.prototype.map.call(document.querySelectorAll('#types input:checked'),function(i){return i.value});
+  var ok=true;
+  ok=mark($('order'),order.length<4)&&ok;
+  ok=mark($('phone'),phone.length<9)&&ok;
+  ok=mark($('deliv'),!deliv)&&ok;
+  ok=mark($('types'),!types.length)&&ok;
+  ok=mark($('pickB'),photos.length<MIN_PH)&&ok;
+  ok=mark($('agreeL'),!$('agree').checked)&&ok;
+  if(!ok){var first=document.querySelector('.err');
+    msg('msgN',photos.length<MIN_PH&&order.length>=4&&phone.length>=9&&deliv&&types.length?t('e_ph',{min:MIN_PH}):(!$('agree').checked&&photos.length>=MIN_PH&&order.length>=4&&deliv&&types.length&&phone.length>=9?t('e_agree'):t('e_req')));
+    if(first)first.scrollIntoView({behavior:'smooth',block:'center'});return}
+  if(phone.length>=9&&!/^(05\d{8}|5\d{8}|9665\d{8}|\d{9,15})$/.test(phone)){mark($('phone'),1);msg('msgN',t('e_phone'));return}
+  var today=new Date();today.setHours(23,59,59);if(new Date(deliv)>today){mark($('deliv'),1);msg('msgN',t('e_date'));return}
+  if(!API_URL){msg('msgN',t('e_cfg'));return}
+  if($('hp').value)return;
+  busy=true;var b=$('sendB');b.disabled=true;b.innerHTML='<span class="spin"></span>'+esc(t('sending'));
+  var body={a:'new',order:order,phone:phone,name:$('name').value.trim().slice(0,60),deliv:deliv,types:types,
+    typesAr:types.map(function(k){return TYPES.filter(function(x){return x[0]===k})[0][1]}),
+    desc:$('desc').value.trim().slice(0,600),lang:lang,photos:photos.map(function(p){return p.split(',')[1]})};
+  fetch(API_URL,{method:'POST',body:JSON.stringify(body)}).then(function(r){return r.json()}).then(function(j){
+    if(!j||!j.ok)throw new Error(j&&j.err||'x');
+    $('cnoV').textContent=j.id;$('frm').hidden=true;$('done').hidden=false;window.scrollTo({top:0,behavior:'smooth'});
+    lastSub={id:j.id,p4:phone.slice(-4)};
+    try{localStorage.setItem('cwc_last',JSON.stringify(lastSub))}catch(e){}
+  }).catch(function(){msg('msgN',t('e_net'))}).then(function(){busy=false;b.disabled=false;b.innerHTML='<span>'+esc(t('send'))+'</span>'})};
+['order','phone','deliv'].forEach(function(i){$(i).addEventListener('input',function(){this.classList.remove('err')})});
+$('types').addEventListener('change',function(){$('types').classList.remove('err')});
+$('agree').onchange=function(){$('agreeL').classList.remove('err')};
+$('deliv').max=new Date().toISOString().slice(0,10);
+
+var lastSub=null,lastTrack=null;
+$('copyB').onclick=function(){var v=$('cnoV').textContent,b=this;(navigator.clipboard?navigator.clipboard.writeText(v):Promise.reject()).catch(function(){}).then(function(){b.textContent=t('copied');setTimeout(function(){b.textContent=t('copy')},1600)})};
+$('goTrack').onclick=function(){if(lastSub){$('tno').value=lastSub.id;$('tph').value=lastSub.p4}tab('track');doTrack()};
+$('again').onclick=function(){photos=[];$('frm').reset();$('done').hidden=true;$('frm').hidden=false;drawShots();window.scrollTo(0,0)};
+
+/* ---- track ---- */
+var STEP={'new':0,review:1,info:1,decided:2,shipped:3,closed:4,rejected:-1};
+function showTrack(j){lastTrack=j;var s=STEP[j.code]==null?0:STEP[j.code];
+  var pill=j.code==='rejected'?'<span class="pill bad">'+esc(t('stRej'))+'</span>':j.code==='info'?'<span class="pill bad">'+esc(t('stInfo'))+'</span>':'<span class="pill">'+esc(t('st'+Math.max(0,s)))+'</span>';
+  var steps=j.code==='rejected'?'':'<ol class="tl">'+[0,1,2,3,4].map(function(i){return '<li class="'+(i<=s?'on':'')+(i===s?' cur':'')+'"><span class="dot">'+(i<=s?ico('<path d="M20 6 9 17l-5-5"/>',14):'')+'</span><div><b>'+esc(i===1&&j.code==='info'?t('stInfo'):t('st'+i))+'</b>'+(i===0?'<small>'+esc(dmy(j.at))+'</small>':(i===s&&j.upd?'<small>'+esc(dmy(j.upd))+'</small>':''))+'</div></li>'}).join('')+'</ol>';
+  $('tres').innerHTML='<div class="thead"><div><small>'+esc(t('doneNo'))+'</small><b>'+esc(j.id)+'</b><small>'+esc(t('order2'))+' '+esc(j.order)+'</small></div>'+pill+'</div>'+steps
+    +(j.note?'<div class="note'+(j.code==='info'||j.code==='rejected'?' ask':'')+'"><small>'+esc(t('noteT'))+'</small>'+esc(j.note)+'</div>':'');
+  $('tres').hidden=false}
+function doTrack(){msg('msgT','');var id=ar2en($('tno').value).trim().toUpperCase().replace(/\s/g,''),p4=ar2en($('tph').value).replace(/\D/g,'');
+  if(/^\d+$/.test(id))id='CWC-'+id;
+  if(!id||p4.length!==4){msg('msgT',t('e_t'));return}
+  if(!API_URL){msg('msgT',t('e_cfg'));return}
+  var b=$('tB');b.disabled=true;b.innerHTML='<span class="spin"></span>';$('tres').hidden=true;
+  fetch(API_URL+'?a=track&id='+encodeURIComponent(id)+'&p='+p4).then(function(r){return r.json()}).then(function(j){
+    if(!j||!j.ok){msg('msgT',t('e_nf'));return}
+    try{history.replaceState(null,'','?c='+encodeURIComponent(j.id))}catch(e){}
+    showTrack(j)}).catch(function(){msg('msgT',t('e_net'))}).then(function(){b.disabled=false;b.innerHTML='<span>'+esc(t('tGo'))+'</span>'})}
+$('tfrm').onsubmit=function(e){e.preventDefault();doTrack()};
+
+/* ---- start ---- */
+paint();
+(function(){var q=new URLSearchParams(location.search),c=q.get('c');
+  if(c||location.hash==='#track'||q.get('track')!==null){tab('track');if(c)$('tno').value=c;
+    try{var l=JSON.parse(localStorage.getItem('cwc_last')||'null');if(l&&(!c||l.id===c)){$('tno').value=l.id;$('tph').value=l.p4}}catch(e){}
+    if($('tno').value&&$('tph').value.length===4)doTrack()}
+  if(q.get('o'))$('order').value=ar2en(q.get('o')).replace(/\D/g,'');
+})();
+</script>
+</body>
+</html>
